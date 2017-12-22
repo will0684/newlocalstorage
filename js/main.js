@@ -5,7 +5,13 @@ var contacts = [];
 let app = {
     init: function(){
         if(localStorage.getItem(KEY)){
-            app.updateList();
+            let saved = localStorage.getItem(KEY);
+            console.log(saved);
+            let json = JSON.parse(saved);
+            json.forEach((contact)=>{
+                contacts.push(contact)
+                app.updateList();
+            });
         }else{
             let str = JSON.stringify(myslf);
             localStorage.setItem(KEY, str);
